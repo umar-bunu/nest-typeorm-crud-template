@@ -1,0 +1,26 @@
+# Use Node.js as base image
+FROM node:21
+
+# Set working directory inside the container
+WORKDIR /usr/src/app
+
+# Copy package.json and yarn.lock to the working directory
+COPY package.json yarn.lock ./
+
+# Install dependencies
+RUN yarn install
+
+
+# Copy the entire application code to the working directory
+COPY . .
+
+RUN yarn build
+
+RUN rm -rf ./src
+
+
+# Expose port (change this to match your NestJS app port)
+EXPOSE 3002
+
+# Command to run your NestJS app
+CMD ["yarn", "run", "start:prod"]

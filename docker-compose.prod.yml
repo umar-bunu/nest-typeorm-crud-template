@@ -1,0 +1,20 @@
+services:
+  sms_api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '3001:3001'
+    environment:
+      - PORT=3001
+      - NODE_ENV=production
+      - DB_PORT=5432
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - DB_HOST=localhost
+      - POSTGRES_DB=nesttypeormcrudtemplate
+      - JWT_SECRET=TOPSECRET
+      - GMAIL_ACCT=lightwingconcept@gmail.com
+      - GMAIL_PASS=pvpqtcsfxngqnfyy
+    volumes:
+      - ./src:/usr/src/app/src
